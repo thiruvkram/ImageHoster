@@ -32,4 +32,36 @@ public class UserService {
         }
     }
 
+    /**
+     * This method check if the password strength is valid.
+     * Password strength is valid if it contains one digit , one alphabet and one special character.
+     * @param password
+     * @return Returns true if the password has expected strength else false.
+     */
+    public boolean isPasswordStrengthValid(String password) {
+        if (!password.isEmpty() && password.length() >= 3) {
+            boolean containsChar = false;
+            boolean containsNum = false;
+            boolean containsSpecialChar = false;
+            for (int i = 0; i < password.length(); i++) {
+                char c = password.charAt(i);
+                if (Character.isDigit(c)) {
+                    containsNum = true;
+                    continue;
+                }
+                if (Character.isLetter(c)) {
+                    containsChar = true;
+                    continue;
+                }
+                if (!Character.isLetter(c) && !Character.isLetter(c)) {
+                    containsSpecialChar = true;
+                    continue;
+                }
+            }
+            if (containsChar && containsNum && containsSpecialChar) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

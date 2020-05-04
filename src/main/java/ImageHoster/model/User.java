@@ -41,6 +41,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Image> images = new ArrayList<>();
 
+    //cascade = CascadeType.REMOVE specifies that if a record in the 'users' table is deleted then all the records in the 'comments' table associated to that particular record in 'users' table will be deleted first and then the record in the 'comments' table will be deleted
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
+
     public Integer getId() {
         return id;
     }
@@ -80,5 +84,9 @@ public class User {
     public void setImages(List<Image> images) {
         this.images = images;
     }
+
+    public List<Comment> getComments() { return comments; }
+
+    public void setComments(List<Comment> comments) { this.comments = comments; }
 }
 
